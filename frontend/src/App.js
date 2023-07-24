@@ -1,22 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>ScheduleSync</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          This react app will allow users to share personal schedules 
+          with each other. Also users can also create a special schedule 
+          that can be edited by anyone that the creator chooses to shared to. 
+          <br></br><br></br>
+          There will be also other potential features that allow users to 
+          share more time or schedule-related with each other to connect 
+          friends and families together and help them find free-time 
+          together.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
