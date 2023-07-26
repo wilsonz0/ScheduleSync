@@ -5,7 +5,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>ScheduleSync</h1>
-        <p>
+      </header>
+      <p>
           This react app will allow users to share personal schedules 
           with each other. Also users can also create a special schedule 
           that can be edited by anyone that the creator chooses to shared to. 
@@ -15,7 +16,6 @@ function App() {
           friends and families together and help them find free-time 
           together.
         </p>
-      </header>
     </div>
   );
 }
