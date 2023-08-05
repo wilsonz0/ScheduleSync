@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const {getAllTimers, getTimerFromOwnerID, getTimer, 
-        addNewTimer, deleteTimer} = require("../controllers/timerController")
+        addNewTimer, deleteTimer, updateTimer} = require("../controllers/timerController")
 
 // GET all timers
 router.get('/', getAllTimers)
@@ -18,5 +18,8 @@ router.post('/', addNewTimer)
 
 // DELETE 
 router.delete('/:id', deleteTimer)
+
+// UPDATE a timer
+router.patch('/:id', updateTimer)
 
 module.exports = router

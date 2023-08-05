@@ -48,10 +48,22 @@ const deleteTimer = async (req, res) => {
     res.status(200).json(timer)
 }
 
+const updateTimer = async (req, res) => {
+    const { id } = req.params
+    // do a premetive check so that backend does not crash
+    const timer = await Timer.findOneAndUpdate({_id: id}, {
+        ...req.body
+    })
+    if (!timer) return res.status(404).json({error: "timer not found"})
+
+    res.status(200).json(timer)
+}
+
 module.exports = {
     getAllTimers,
     getTimerFromOwnerID,
     getTimer,
     addNewTimer,
-    deleteTimer
+    deleteTimer,
+    updateTimer
 }
