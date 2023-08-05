@@ -1,4 +1,5 @@
 const Timer = require('../models/timerModel')
+const mongoose = require('mongoose')
 
 // get all timers
 const getAllTimers = async (req, res) => {
@@ -19,7 +20,11 @@ const getTimerFromOwnerID = async (req, res) => {
 // get a single timer
 const getTimer = async (req, res) => {
     const { id } = req.params
-    // do a premetive check so that backend does not crash
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "timer not found"})
+    }
+
     const timer = await Timer.findById(id)
     if (!timer) return res.status(404).json({error: "timer not found"})
     res.status(200).json(timer)
@@ -41,7 +46,11 @@ const addNewTimer = async (req, res) => {
 // delete a timer
 const deleteTimer = async (req, res) => {
     const { id } = req.params
-    // do a premetive check so that backend does not crash
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "timer not found"})
+    }
+
     const timer = await Timer.findOneAndDelete({_id: id})
     if (!timer) return res.status(404).json({error: "timer not found"})
     
@@ -50,10 +59,12 @@ const deleteTimer = async (req, res) => {
 
 const updateTimer = async (req, res) => {
     const { id } = req.params
-    // do a premetive check so that backend does not crash
-    const timer = await Timer.findOneAndUpdate({_id: id}, {
-        ...req.body
-    })
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "timer not found"})
+    }
+    
+    const timer = await Timer.findOneAndUpdate({_id: id}, { ...req.body })
     if (!timer) return res.status(404).json({error: "timer not found"})
 
     res.status(200).json(timer)
