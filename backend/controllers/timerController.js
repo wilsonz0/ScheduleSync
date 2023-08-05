@@ -1,14 +1,13 @@
 const Timer = require('../models/timerModel')
 const mongoose = require('mongoose')
 
-// get all timers
+// GET all timers
 const getAllTimers = async (req, res) => {
     const timers = await Timer.find({})
     res.status(200).json(timers)
 }
 
-
-// get all timers from an owner
+// GET all timer from an owner id
 const getTimerFromOwnerID = async (req, res) => {
     const { ownerID } = req.params
     const ownersTimers = await Timer.find({ownerID: ownerID})
@@ -17,7 +16,7 @@ const getTimerFromOwnerID = async (req, res) => {
     res.status(200).json(ownersTimers)
 }
 
-// get a single timer
+// GET timer by timer's id
 const getTimer = async (req, res) => {
     const { id } = req.params
     
@@ -30,7 +29,7 @@ const getTimer = async (req, res) => {
     res.status(200).json(timer)
 }
 
-// post a new timer
+// POST a new timer
 const addNewTimer = async (req, res) => {
     const {name, ownerID, startingTime, timerLength} = req.body
     try {
@@ -42,8 +41,7 @@ const addNewTimer = async (req, res) => {
     }
 }
 
-
-// delete a timer
+// DELETE a timer
 const deleteTimer = async (req, res) => {
     const { id } = req.params
     
@@ -57,6 +55,7 @@ const deleteTimer = async (req, res) => {
     res.status(200).json(timer)
 }
 
+// UPDATE a timer
 const updateTimer = async (req, res) => {
     const { id } = req.params
     
