@@ -1,38 +1,22 @@
 const express = require('express')
-const Timer = require('../models/timerModel')
 const router = express.Router()
 
-// GETs
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all timers'})
-})
+const {getAllTimers, getTimerFromOwnerID, getTimer, 
+        addNewTimer, deleteTimer} = require("../controllers/timerController")
 
-router.get('/:id', (req, res) => {
-    res.json({mssg: "GET a single timer"})
-})
+// GET all timers
+router.get('/', getAllTimers)
 
-// POST
-router.post('/', async (req, res) => {
-    const {name, ownerID, startingTime, timerLength} = req.body
-    try {
-        const timer = await Timer.create({name, ownerID, startingTime, timerLength})
-        res.status(200).json(timer)
-        console.log("POSTED a new timer")
-    }
-    catch (error) {
-        res.status(400).json({error: error.message})
-        console.log("ERROR")
-    }
-})
+// GET all timer from an owner id
+router.get('/user/:ownerID', getTimerFromOwnerID)
+
+// GET timer by timer's id
+router.get('/:id', getTimer)
+
+// POST a new timer
+router.post('/', addNewTimer)
 
 // DELETE 
-router.delete('/:id', (req, res) => {
-    res.json({mssg: "DELETE a single timer"})
-})
-
-// PATCH (aka UPDATE)
-router.patch('/:id', (req, res) => {
-    res.json({mssg: "PATCH a single timer"})
-})
+router.delete('/:id', deleteTimer)
 
 module.exports = router

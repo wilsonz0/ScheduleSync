@@ -6,6 +6,10 @@ router.get('/', (req, res) => {
     res.json({mssg: 'GET all schedules'})
 })
 
+router.get('/:ownerID', (req, res) => {
+    res.json({mssg: "GET all timers from a owner"})
+})
+
 router.get('/:id', (req, res) => {
     res.json({mssg: "GET a single schedule"})
 })
