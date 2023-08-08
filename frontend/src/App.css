@@ -1,15 +1,20 @@
-.App {
-  text-align: center;
-}
-
 .App-header {
   background-color: #282c34;
+  text-align: center;
   color: white;
   align-items: center;
   justify-content: center;
-  /* min-height: 100vh;
+}
+
+.buttons {
   display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin); */
-  
+  justify-content: space-evenly;
+}
+
+#schedule img {
+  width: 200px;
+}
+
+#timer img {
+  width: 200px;
 }
