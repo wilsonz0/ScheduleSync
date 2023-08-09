@@ -1,0 +1,12 @@
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#schedule {
+  width: 200px;
+}
+
+#timer {
+  width: 200px;
+}

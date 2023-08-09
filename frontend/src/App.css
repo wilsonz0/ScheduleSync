@@ -5,16 +5,3 @@
   align-items: center;
   justify-content: center;
 }
-
-.buttons {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-#schedule img {
-  width: 200px;
-}
-
-#timer img {
-  width: 200px;
-}
