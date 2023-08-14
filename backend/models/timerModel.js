@@ -10,11 +10,11 @@ const timerSchema = new Schema({
         type: Number,
         required: true
     },
-    startingTime: {     // will be converted to UTC+0 before being stored && will be time from epoch
+    startingEpoch: {
         type: Number,
         required: true
     },
-    timerLength: {      // (temp) lets say it is in seconds
+    timerLength: {      // will be in seconds
         type: Number,
         required: true
     }
