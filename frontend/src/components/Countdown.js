@@ -10,7 +10,7 @@ class Countdown extends Component {
     }
 
     start() {
-        
+        // this function will fire when the timer has started
     }
 
     end() {
@@ -26,6 +26,7 @@ class Countdown extends Component {
         const { startingEpoch, timerLength } = this.state;
         
         // testing purposes
+        console.log("se: " + startingEpoch, "tl: " + timerLength)
         const testingEpoch = this.getCurrentEpoch() - 20
         /***************************/
 
@@ -39,11 +40,11 @@ class Countdown extends Component {
         remainingSeconds -= minutes * 60;
 
         return (
-            <span>  
-                {hour < 10 ? '0' : ''}{hour}:
-                {minutes < 10 ? '0' : ''}{minutes}:
-                {remainingSeconds < 10 ? '0' : ''}{remainingSeconds}
-            </span>
+            <div className="countdown">  
+                {hour < 10 ? '0' : ''}{hour < 0 ? '0': hour}:
+                {minutes < 10 ? '0' : ''}{minutes < 0 ? '0': minutes}:
+                {remainingSeconds < 10 ? '0' : ''}{remainingSeconds < 0 ? '0': remainingSeconds}
+            </div>
         )
     }
 

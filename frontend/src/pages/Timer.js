@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import '../styles/Timer.css'
+import Countdown from '../components/Countdown.js'
 
 // testing
 import testData from "../test.json"
@@ -26,17 +27,24 @@ const Timer = () => {
 
     return (
         <div className="timer">
-            <h2>Timers</h2>
-            <p> This will display all the timers and allow user to share their timer with others.</p>
+            <header id="timer-header">
+                <a href="/">
+                    <span>(BACK)</span>
+                </a>
+                <h2>Timers</h2>
+            </header>
+            
+            <div id="createBox">
+                <input type="text" id="countdownInput"/>
+                <button id="createButton">Create</button>
+            </div>
             <div className='timers'>
                 {timers && timers.map((timer) => (
-                    <p key={timer._id}>
+                    <div class="timerBoxes" key={timer._id}>
                         <h3>{timer.name}</h3> 
                         <span>own by ownerID: {timer.ownerID}</span>
-                        <p>
-                            starting time was {timer.startingTime} sec and there is {timer.timerLength} sec left.
-                        </p>
-                    </p>
+                        <Countdown startingEpoch={timer.startingEpoch} timerLength={timer.timerLength} />
+                    </div>
                 ))}
             </div>
         </div>
