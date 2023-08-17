@@ -1,53 +1,37 @@
-import { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-class Countdown extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            startingEpoch: props.startingEpoch,
-            timerLength: props.timerLength,
-        }
-    }
+// returns the current epoch in seconds 
+function getCurrentEpoch() {
+    return parseInt(new Date().valueOf() / 1000);
+}
 
-    start() {
-        // this function will fire when the timer has started
-    }
+function Countdown({startingEpoch, timerLength}) {
+    // testing purposes
+    const testingEpoch = getCurrentEpoch() - 40;
+    /***************************/
+    const timeDifference = getCurrentEpoch() - testingEpoch; // replace with startingEpoch
 
-    end() {
-        // this function will fire when the timer has finished
-    }
+    const [hours, setHours] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(timerLength - timeDifference);
+    
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setHours(parseInt(seconds / (60 * 60)));
+            setMinutes(parseInt(seconds / 60));
+            setSeconds(seconds - 1);
+        }, 1000);
 
-    // returns the current epoch in seconds 
-    getCurrentEpoch() {
-        return parseInt(new Date().valueOf() / 1000);
-    }
+        return () => clearInterval(interval);
+    }, [seconds])
 
-    render() {
-        const { startingEpoch, timerLength } = this.state;
-        
-        // testing purposes
-        console.log("se: " + startingEpoch, "tl: " + timerLength)
-        const testingEpoch = this.getCurrentEpoch() - 20
-        /***************************/
-
-        const timeDifference = this.getCurrentEpoch() - testingEpoch
-        let remainingSeconds = timerLength - timeDifference
-
-        console.log("te: " + testingEpoch, "td: " + timeDifference, "rs: " + remainingSeconds)
-        const hour = parseInt(remainingSeconds / (60 * 60))
-        remainingSeconds -= hour * 60 * 60;
-        const minutes = parseInt(remainingSeconds / 60);
-        remainingSeconds -= minutes * 60;
-
-        return (
-            <div className="countdown">  
-                {hour < 10 ? '0' : ''}{hour < 0 ? '0': hour}:
-                {minutes < 10 ? '0' : ''}{minutes < 0 ? '0': minutes}:
-                {remainingSeconds < 10 ? '0' : ''}{remainingSeconds < 0 ? '0': remainingSeconds}
-            </div>
-        )
-    }
-
+    return (
+        <div className="countdown">  
+            {hours < 10 ? '0' : ''}{hours < 0 ? '0': hours}:
+            {minutes < 10 ? '0' : ''}{minutes < 0 ? '0': minutes}:
+            {seconds < 10 ? '0' : ''}{seconds < 0 ? '0': seconds}
+        </div>
+    )
 }
 
 export default Countdown
