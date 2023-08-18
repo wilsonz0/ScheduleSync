@@ -40,11 +40,10 @@ const Timer = () => {
             </div>
             <div className='timers'>
                 {timers && timers.map((timer) => (
-                    <div className="timerBoxes" key={timer._id}>
-                        <h3>{timer.name}</h3> 
-                        <span>own by ownerID: {timer.ownerID}</span>
-                        <Countdown startingEpoch={timer.startingEpoch} timerLength={timer.timerLength} />
-                    </div>
+                    <Countdown timer={timer} 
+                            startingEpoch={timer.startingEpoch} 
+                            timerLength={timer.timerLength}
+                    />
                 ))}
             </div>
         </div>

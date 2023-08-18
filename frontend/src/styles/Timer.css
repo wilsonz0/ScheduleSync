@@ -44,3 +44,7 @@
     text-align: center;
     padding: 20px;
 }
+
+.finished {
+    background-color: red;
+}
