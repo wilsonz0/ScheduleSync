@@ -13,6 +13,25 @@
     background: skyblue;
 }
 
+/* .inputWrapper {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.inputWrapper input {
+    width: 100px;
+    margin-right: 1rem;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
 #createButton {
     width: 100px;
 }
